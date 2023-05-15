@@ -3,7 +3,7 @@ package spaceinvader.spaceinvader;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class SpaceController {
     @FXML
     private Label welcomeText;
 
@@ -11,4 +11,5 @@ public class HelloController {
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
+
 }
