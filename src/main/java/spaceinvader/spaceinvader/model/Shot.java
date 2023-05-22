@@ -14,13 +14,7 @@
  * Tous droits réservés.
  */
 
-package spaceinvader.spaceinvader;
-
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.scene.image.Image;
-import javafx.util.Duration;
+package spaceinvader.spaceinvader.model;
 
 /**
  * La classe Shot représente un tir se déplaçant sur la grille du jeu Space-Invaders.
@@ -29,7 +23,7 @@ import javafx.util.Duration;
  *
  * @version 0.1.0
  */
-public final class Shot extends AbstractMovable {
+public final class Shot extends spaceinvader.spaceinvader.model.AbstractMovable {
 
     /**
      * La Timeline permettant à ce tir de se déplacer seul.
@@ -51,7 +45,7 @@ public final class Shot extends AbstractMovable {
      *        étape de déplacement.
      *        Le signe de ce nombre indique la direction du déplacement.
      */
-    public Shot(SpaceInvadersGame game, javafx.scene.image.Image sprite, int tilesPerStep) {
+    public Shot(spaceinvader.spaceinvader.model.SpaceInvadersGame game, javafx.scene.image.Image sprite, int tilesPerStep) {
         super(game, sprite, 1);
         this.tilesPerStep = tilesPerStep;
     }

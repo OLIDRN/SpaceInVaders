@@ -14,7 +14,7 @@
  * Tous droits réservés.
  */
 
-package spaceinvader.spaceinvader;
+package spaceinvader.spaceinvader.model;
 
 import java.net.URL;
 import java.util.HashMap;

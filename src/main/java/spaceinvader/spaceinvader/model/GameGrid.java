@@ -14,7 +14,7 @@
  * Tous droits réservés.
  */
 
-package spaceinvader.spaceinvader;
+package spaceinvader.spaceinvader.model;
 
 /**
  * La classe GameGrid représente la grille du jeu Space-Invaders, sur laquelle
@@ -39,7 +39,7 @@ public final class GameGrid {
     /**
      * Les tuiles qui constituent cette grille.
      */
-    private Tile[][] tiles;
+    private spaceinvader.spaceinvader.model.Tile[][] tiles;
 
     /**
      * Crée une nouvelle instance de GameGrid.
@@ -50,7 +50,7 @@ public final class GameGrid {
     public GameGrid(int height, int width) {
         this.width = width;
         this.height = height;
-        this.tiles = new Tile[height][width];
+        this.tiles = new spaceinvader.spaceinvader.model.Tile[height][width];
         init();
     }
 
@@ -60,7 +60,7 @@ public final class GameGrid {
     private void init() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                tiles[i][j] = new Tile(i, j);
+                tiles[i][j] = new spaceinvader.spaceinvader.model.Tile(i, j);
             }
         }
     }
@@ -104,7 +104,7 @@ public final class GameGrid {
      *
      * @return La tuile à la position donnée.
      */
-    public Tile get(int row, int column) {
+    public spaceinvader.spaceinvader.model.Tile get(int row, int column) {
         return tiles[row][column];
     }
 

@@ -14,9 +14,7 @@
  * Tous droits réservés.
  */
 
-package spaceinvader.spaceinvader;
-
-import javafx.scene.image.Image;
+package spaceinvader.spaceinvader.model;
 
 /**
  * La classe PlayerShip représente le vaisseau du joueur sur la grille du Space-Invaders.
@@ -25,7 +23,7 @@ import javafx.scene.image.Image;
  *
  * @version 0.1.0
  */
-public final class PlayerShip extends AbstractMovable {
+public final class PlayerShip extends spaceinvader.spaceinvader.model.AbstractMovable {
 
     /**
      * Crée une nouvelle instance de PlayerShip.
@@ -33,7 +31,7 @@ public final class PlayerShip extends AbstractMovable {
      * @param game Le jeu de Space-Invaders dans lequel l'objet se déplace.
      * @param sprite L'image représentant l'objet.
      */
-    public PlayerShip(SpaceInvadersGame game, javafx.scene.image.Image sprite) {
+    public PlayerShip(spaceinvader.spaceinvader.model.SpaceInvadersGame game, javafx.scene.image.Image sprite) {
         super(game, sprite, 3);
     }
 

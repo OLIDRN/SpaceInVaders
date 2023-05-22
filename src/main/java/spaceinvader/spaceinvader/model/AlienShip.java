@@ -14,13 +14,7 @@
  * Tous droits réservés.
  */
 
-package spaceinvader.spaceinvader;
-
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.scene.image.Image;
-import javafx.util.Duration;
+package spaceinvader.spaceinvader.model;
 
 /**
  * La classe AlienShip représente un vaisseau alien se déplaçant sur la grille du jeu
@@ -30,7 +24,7 @@ import javafx.util.Duration;
  *
  * @version 0.1.0
  */
-public final class AlienShip extends AbstractMovable {
+public final class AlienShip extends spaceinvader.spaceinvader.model.AbstractMovable {
 
     /**
      * La Timeline permettant à cet alien de se déplacer seul.
@@ -43,7 +37,7 @@ public final class AlienShip extends AbstractMovable {
      * @param game Le jeu de Space-Invaders dans lequel l'objet se déplace.
      * @param sprite L'image représentant l'objet.
      */
-    public AlienShip(SpaceInvadersGame game, javafx.scene.image.Image sprite) {
+    public AlienShip(spaceinvader.spaceinvader.model.SpaceInvadersGame game, javafx.scene.image.Image sprite) {
         super(game, sprite, 1);
     }
 

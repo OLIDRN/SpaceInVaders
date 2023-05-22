@@ -14,9 +14,7 @@
  * Tous droits réservés.
  */
 
-package spaceinvader.spaceinvader;
-
-import javafx.scene.image.Image;
+package spaceinvader.spaceinvader.model;
 
 /**
  * La classe AbstractMovable est la classe parente des différents objets mobiles pouvant
@@ -31,7 +29,7 @@ public abstract class AbstractMovable {
     /**
      * Le jeu Space-Invaders, dans lequel cet objet mobile se déplace.
      */
-    protected final SpaceInvadersGame game;
+    protected final spaceinvader.spaceinvader.model.SpaceInvadersGame game;
 
     /**
      * La ligne où se trouve cet objet mobile.
@@ -60,7 +58,7 @@ public abstract class AbstractMovable {
      * @param sprite L'image représentant l'objet.
      * @param initialHealth Les points de vie initiaux de l'objet.
      */
-    protected AbstractMovable(SpaceInvadersGame game, javafx.scene.image.Image sprite, int initialHealth) {
+    protected AbstractMovable(spaceinvader.spaceinvader.model.SpaceInvadersGame game, javafx.scene.image.Image sprite, int initialHealth) {
         this.game = game;
         this.sprite = sprite;
         this.health = initialHealth;

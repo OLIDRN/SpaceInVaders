@@ -14,9 +14,7 @@
  * Tous droits réservés.
  */
 
-package spaceinvader.spaceinvader;
-
-import java.util.Random;
+package spaceinvader.spaceinvader.model;
 
 /**
  * La classe SpaceInvadersGame permet de gérer une partie du jeu Space-Invaders.
@@ -35,17 +33,17 @@ public final class SpaceInvadersGame {
     /**
      * L'objet permettant de créer les sprites représentant les objets mobiles du jeu.
      */
-    private SpriteStore spriteStore;
+    private spaceinvader.spaceinvader.model.SpriteStore spriteStore;
 
     /**
      * La grille sur laquelle les objets du jeu se déplacent.
      */
-    private GameGrid grid;
+    private spaceinvader.spaceinvader.model.GameGrid grid;
 
     /**
      * Le vaisseau du joueur.
      */
-    private PlayerShip ship;
+    private spaceinvader.spaceinvader.model.PlayerShip ship;
 
     /**
      * Le nombre d'aliens encore vivants.
@@ -78,15 +76,15 @@ public final class SpaceInvadersGame {
      *        tuiles).
      */
     public SpaceInvadersGame(int height, int width) {
-        this.grid = new GameGrid(height, width);
-        this.spriteStore = new SpriteStore();
+        this.grid = new spaceinvader.spaceinvader.model.GameGrid(height, width);
+        this.spriteStore = new spaceinvader.spaceinvader.model.SpriteStore();
     }
 
     /**
      * Prépare une partie de Space-Invaders sur le contrôleur de l'application.
      */
     public void prepare() {
-        // TODO Complétez cette méthode.
+        // TODO : à compléter.
     }
 
     /**
@@ -95,7 +93,7 @@ public final class SpaceInvadersGame {
      */
     public void start() {
         // On crée d'abord le vaisseau du joueur.
-        this.ship = new PlayerShip(this, spriteStore.createSprite("ship"));
+        this.ship = new spaceinvader.spaceinvader.model.PlayerShip(this, spriteStore.createSprite("ship"));
         int row = grid.getHeight() - 3;
         int column = grid.getWidth() / 2;
         ship.setPosition(row, column);
@@ -104,7 +102,7 @@ public final class SpaceInvadersGame {
         // On ajoute ensuite les aliens.
         nbRemainingAliens = grid.getWidth() / 3;
         for (int i = 0; i < nbRemainingAliens; i++) {
-            AlienShip alien = new AlienShip(this, spriteStore.createSprite("alien"));
+            spaceinvader.spaceinvader.model.AlienShip alien = new spaceinvader.spaceinvader.model.AlienShip(this, spriteStore.createSprite("alien"));
             alien.setPosition(1, 2 * i);
             grid.get(1, 2 * i).setMovable(alien);
             alien.animate();
@@ -130,7 +128,7 @@ public final class SpaceInvadersGame {
      *
      * @param alien Le vaisseau alien à déplacer.
      */
-    public void move(AlienShip alien) {
+    public void move(spaceinvader.spaceinvader.model.AlienShip alien) {
         // On détermine la prochaine position de l'alien.
         int row = alienRow;
         int column = alien.getColumn();
@@ -168,12 +166,12 @@ public final class SpaceInvadersGame {
      * @param newRow La nouvelle ligne pour l'objet.
      * @param newColumn La nouvelle colonne pour l'objet.
      */
-    private void moveTo(AbstractMovable movable, int newRow, int newColumn) {
+    private void moveTo(spaceinvader.spaceinvader.model.AbstractMovable movable, int newRow, int newColumn) {
         if (grid.isOnGrid(newRow, newColumn)) {
-            Tile previous = grid.get(movable.getRow(), movable.getColumn());
+            spaceinvader.spaceinvader.model.Tile previous = grid.get(movable.getRow(), movable.getColumn());
             previous.removeMovable();
 
-            Tile next = grid.get(newRow, newColumn);
+            spaceinvader.spaceinvader.model.Tile next = grid.get(newRow, newColumn);
             next.setMovable(movable);
 
             movable.setPosition(newRow, newColumn);
@@ -185,7 +183,7 @@ public final class SpaceInvadersGame {
      *
      * @param shot Le tir à déplacer.
      */
-    public void move(Shot shot) {
+    public void move(spaceinvader.spaceinvader.model.Shot shot) {
         // On déplace le tir de sa position courante.
         int row = shot.getRow();
         int column = shot.getColumn();
@@ -194,8 +192,8 @@ public final class SpaceInvadersGame {
 
         if (grid.isOnGrid(nextRow, column) && (nextRow != grid.getHeight() - 1)) {
             // On regarde si un objet se trouve sur la prochaine tuile.
-            Tile next = grid.get(nextRow, column);
-            AbstractMovable movable = next.getMovable();
+            spaceinvader.spaceinvader.model.Tile next = grid.get(nextRow, column);
+            spaceinvader.spaceinvader.model.AbstractMovable movable = next.getMovable();
             if (movable == null) {
                 next.setMovable(shot);
                 shot.setPosition(nextRow, column);
@@ -224,7 +222,7 @@ public final class SpaceInvadersGame {
      *
      * @param alien Le vaisseau alien qui tire.
      */
-    public void fireAlienShot(AlienShip alien) {
+    public void fireAlienShot(spaceinvader.spaceinvader.model.AlienShip alien) {
         if (RANDOM.nextInt(5) == 0) {
             fireShot(alien.getRow() + 1, alien.getColumn(), +1, "alien-shot");
         }
@@ -239,7 +237,7 @@ public final class SpaceInvadersGame {
      * @param name Le nom de l'image représentant le tir.
      */
     private void fireShot(int row, int column, int direction, String name) {
-        Shot shot = new Shot(this, spriteStore.createSprite(name), direction);
+        spaceinvader.spaceinvader.model.Shot shot = new spaceinvader.spaceinvader.model.Shot(this, spriteStore.createSprite(name), direction);
         shot.setPosition(row, column);
         grid.get(row, column).setMovable(shot);
         shot.animate();
@@ -250,7 +248,7 @@ public final class SpaceInvadersGame {
      *
      * @param movable L'objet à retirer.
      */
-    public void removeMovable(AbstractMovable movable) {
+    public void removeMovable(spaceinvader.spaceinvader.model.AbstractMovable movable) {
         // TODO Complétez cette méthode.
         grid.get(movable.getRow(), movable.getColumn()).removeMovable();
     }

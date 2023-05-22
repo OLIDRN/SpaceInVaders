@@ -14,7 +14,7 @@
  * Tous droits réservés.
  */
 
-package spaceinvader.spaceinvader;
+package spaceinvader.spaceinvader.model;
 
 /**
  * La classe Tile représente une tuile composant la grille du jeu Space-Invaders.
@@ -40,7 +40,7 @@ public final class Tile {
     /**
      * L'éventuel objet mobile qui peut se trouver sur cette tuile.
      */
-    private AbstractMovable movableObject;
+    private spaceinvader.spaceinvader.model.AbstractMovable movableObject;
 
     /**
      * Crée une nouvelle instance de Tile.
@@ -77,7 +77,7 @@ public final class Tile {
      *
      * @return L'objet mobile sur cette tuile.
      */
-    public AbstractMovable getMovable() {
+    public spaceinvader.spaceinvader.model.AbstractMovable getMovable() {
         return movableObject;
     }
 
@@ -86,7 +86,7 @@ public final class Tile {
      *
      * @param movableObject Le nouvel objet mobile sur cette tuile.
      */
-    public void setMovable(AbstractMovable movableObject) {
+    public void setMovable(spaceinvader.spaceinvader.model.AbstractMovable movableObject) {
         this.movableObject = movableObject;
     }
 

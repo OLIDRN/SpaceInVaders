@@ -1,4 +1,4 @@
-package spaceinvader.spaceinvader;
+package spaceinvader.spaceinvader.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
