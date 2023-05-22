@@ -42,7 +42,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>
       </GridPane>
-      <Pane prefHeight="81.0" prefWidth="940.0" style="-fx-background-color: #000000;" translateY="35.0">
+      <Pane prefHeight="81.0" prefWidth="940.0" translateY="35.0">
          <children>
             <Label fx:id="life" layoutX="34.0" layoutY="-16.0" prefHeight="67.0" prefWidth="256.0" text="Vies : " textFill="#7f00f7">
                <font>

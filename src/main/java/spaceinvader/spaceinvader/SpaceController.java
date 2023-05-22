@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 import java.net.URL;
 
@@ -19,6 +20,11 @@ public class SpaceController {
     @FXML
     private GridPane gameGrid;
 
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     @FXML
     private void initialize() {
@@ -28,7 +34,7 @@ public class SpaceController {
         for (int  i = 0; i < 10; i++) {
             for (int j = 0; j < 20; j++) {
                 Label label = new Label();
-                label.setMinSize(50,10);
+                label.setMinSize(50,50);
                 label.setBackground(createBackground("back"));;
                 gameGrid.add(label, j, i);
             }
