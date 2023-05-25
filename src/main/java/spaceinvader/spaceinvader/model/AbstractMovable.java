@@ -14,7 +14,11 @@
  * Tous droits réservés.
  */
 
+
 package spaceinvader.spaceinvader.model;
+
+import javafx.beans.property.*;
+
 
 /**
  * La classe AbstractMovable est la classe parente des différents objets mobiles pouvant
@@ -49,7 +53,7 @@ public abstract class AbstractMovable {
     /**
      * Les points de vie restants pour cet objet mobile.
      */
-    private int health;
+    private final IntegerProperty health;
 
     /**
      * Crée une nouvelle instance d'AbstractMovable.
@@ -61,7 +65,7 @@ public abstract class AbstractMovable {
     protected AbstractMovable(spaceinvader.spaceinvader.model.SpaceInvadersGame game, javafx.scene.image.Image sprite, int initialHealth) {
         this.game = game;
         this.sprite = sprite;
-        this.health = initialHealth;
+        this.health = new SimpleIntegerProperty(initialHealth);
     }
 
     /**
@@ -108,22 +112,22 @@ public abstract class AbstractMovable {
      * @return Les points de vie restants pour cet objet mobile.
      */
     public int getHealth() {
-        return health;
+        return health.get();
     }
 
     /**
      * Augmente les points de vie de cet objet mobile.
      */
     public void incrementHealth() {
-        health++;
+        health.set(health.get() + 1);
     }
 
     /**
      * Diminue les points de vie de cet objet mobile.
      */
     public void decrementHealth() {
-        health--;
-        if (health == 0) {
+        health.set(health.get() - 1);
+        if (health.get() <= 0) {
             game.removeMovable(this);
         }
     }

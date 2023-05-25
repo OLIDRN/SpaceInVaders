@@ -16,6 +16,9 @@
 
 package spaceinvader.spaceinvader.model;
 
+import java.util.*;
+import javafx.scene.input.KeyEvent;
+
 /**
  * La classe SpaceInvadersGame permet de gérer une partie du jeu Space-Invaders.
  *
@@ -28,22 +31,22 @@ public final class SpaceInvadersGame {
     /**
      * Le générateur de nombres aléatoires utilisé dans la partie.
      */
-    private static final java.util.Random RANDOM = new java.util.Random();
+    private static final Random RANDOM = new java.util.Random();
 
     /**
      * L'objet permettant de créer les sprites représentant les objets mobiles du jeu.
      */
-    private spaceinvader.spaceinvader.model.SpriteStore spriteStore;
+    private SpriteStore spriteStore;
 
     /**
      * La grille sur laquelle les objets du jeu se déplacent.
      */
-    private spaceinvader.spaceinvader.model.GameGrid grid;
+    private GameGrid grid;
 
     /**
      * Le vaisseau du joueur.
      */
-    private spaceinvader.spaceinvader.model.PlayerShip ship;
+    private PlayerShip ship;
 
     /**
      * Le nombre d'aliens encore vivants.
@@ -67,6 +70,14 @@ public final class SpaceInvadersGame {
      */
     private int score = 0;
 
+    private javafx.stage.Stage stage;
+
+    private Interface controller;
+
+    public void setController(Interface controller) {
+        this.controller = controller;
+    }
+
     /**
      * Crée une nouvelle instance de SpaceInvadersGame.
      *
@@ -84,7 +95,33 @@ public final class SpaceInvadersGame {
      * Prépare une partie de Space-Invaders sur le contrôleur de l'application.
      */
     public void prepare() {
-        // TODO : à compléter.
+        controller.setGameGrid(grid);
+    }
+
+    public void setStage(javafx.stage.Stage stage) {
+        this.stage = stage;
+        stage.addEventFilter(KeyEvent.KEY_PRESSED, this::KeyPressed);
+        stage.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            switch (event.getCode()){
+                case SPACE -> {
+                    fireShot();
+                    break;
+                }
+            }
+        });
+    }
+
+    public void KeyPressed(KeyEvent event) {
+        switch (event.getCode()) {
+            case LEFT:
+                moveLeft();
+                break;
+            case RIGHT:
+                moveRight();
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -98,6 +135,8 @@ public final class SpaceInvadersGame {
         int column = grid.getWidth() / 2;
         ship.setPosition(row, column);
         grid.get(row, column).setMovable(ship);
+        Interface.setScore(score);
+        Interface.setLife(ship.getHealth());
 
         // On ajoute ensuite les aliens.
         nbRemainingAliens = grid.getWidth() / 3;
@@ -249,7 +288,7 @@ public final class SpaceInvadersGame {
      * @param movable L'objet à retirer.
      */
     public void removeMovable(spaceinvader.spaceinvader.model.AbstractMovable movable) {
-        // TODO Complétez cette méthode.
+        controller.removeMovable(movable);
         grid.get(movable.getRow(), movable.getColumn()).removeMovable();
     }
 
@@ -287,7 +326,7 @@ public final class SpaceInvadersGame {
      * @param message Le message indiquant le résultat de la partie.
      */
     private void gameOver(String message) {
-        gameOver("YOU LOSE!");
+        controller.endGame(message);
     }
 
 }

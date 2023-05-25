@@ -16,6 +16,8 @@
 
 package spaceinvader.spaceinvader.model;
 
+import javafx.beans.property.ObjectProperty;
+
 /**
  * La classe Tile représente une tuile composant la grille du jeu Space-Invaders.
  * Une fois créée, une telle tuile reste fixe dans la grille : c'est son contenu qui
@@ -40,7 +42,7 @@ public final class Tile {
     /**
      * L'éventuel objet mobile qui peut se trouver sur cette tuile.
      */
-    private spaceinvader.spaceinvader.model.AbstractMovable movableObject;
+    private final ObjectProperty<AbstractMovable> movableObject;
 
     /**
      * Crée une nouvelle instance de Tile.
@@ -78,7 +80,7 @@ public final class Tile {
      * @return L'objet mobile sur cette tuile.
      */
     public spaceinvader.spaceinvader.model.AbstractMovable getMovable() {
-        return movableObject;
+        return movableObject.get();
     }
 
     /**
@@ -87,14 +89,18 @@ public final class Tile {
      * @param movableObject Le nouvel objet mobile sur cette tuile.
      */
     public void setMovable(spaceinvader.spaceinvader.model.AbstractMovable movableObject) {
-        this.movableObject = movableObject;
+        this.movableObject.set(movableObject);
     }
 
     /**
      * Retire l'objet mobile se trouvant actuellement sur cette tuile.
      */
     public void removeMovable() {
-        this.movableObject = null;
+        this.movableObject.set(null);
+    }
+
+    public ObjectProperty<AbstractMovable> getMovableProperty() {
+        return this.movableObject;
     }
 
     /**

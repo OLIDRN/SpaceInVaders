@@ -16,37 +16,12 @@
 
 package spaceinvader.spaceinvader.model;
 
-/**
- * La classe GameGrid représente la grille du jeu Space-Invaders, sur laquelle
- * les objets mobiles se déplacent.
- *
- * @author Romain Wallon
- *
- * @version 0.1.0
- */
 public final class GameGrid {
 
-    /**
-     * Le nombre de lignes de tuiles dans cette grille.
-     */
     private int height;
-
-    /**
-     * Le nombre de colonnes de tuiles dans cette grille.
-     */
     private int width;
-
-    /**
-     * Les tuiles qui constituent cette grille.
-     */
     private spaceinvader.spaceinvader.model.Tile[][] tiles;
 
-    /**
-     * Crée une nouvelle instance de GameGrid.
-     *
-     * @param width Le nombre de lignes de tuiles dans la grille.
-     * @param height Le nombre de colonnes de tuiles dans la grille.
-     */
     public GameGrid(int height, int width) {
         this.width = width;
         this.height = height;
@@ -54,9 +29,6 @@ public final class GameGrid {
         init();
     }
 
-    /**
-     * Crée les tuiles qui constituent cette grille.
-     */
     private void init() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -65,45 +37,19 @@ public final class GameGrid {
         }
     }
 
-    /**
-     * Donne le nombre de lignes de tuiles dans cette grille.
-     *
-     * @return Le nombre de lignes de tuiles dans cette grille.
-     */
     public int getHeight() {
         return height;
     }
 
-    /**
-     * Donne le nombre de colonnes de tuiles dans cette grille.
-     *
-     * @return Le nombre de colonnes de tuiles dans cette grille.
-     */
     public int getWidth() {
         return width;
     }
 
-    /**
-     * Vérifie si une position se trouve sur cette grille.
-     *
-     * @param row L'indice de ligne à vérifier.
-     * @param column L'indice de colonne à vérifier.
-     *
-     * @return Si la position se trouve bien sur la grille.
-     */
     public boolean isOnGrid(int row, int column) {
         return ((0 <= row) && (row < height))
                 && ((0 <= column) && (column < width));
     }
 
-    /**
-     * Donne une tuile à une position donnée.
-     *
-     * @param row La ligne de la tuile à récupérer.
-     * @param column La colonne de la tuile à récupérer.
-     *
-     * @return La tuile à la position donnée.
-     */
     public spaceinvader.spaceinvader.model.Tile get(int row, int column) {
         return tiles[row][column];
     }
