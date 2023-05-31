@@ -1,0 +1,8 @@
+
+U	java:S106P"9Replace this use of System.out or System.err by a logger.(ôµ°é8’Ğä‡1
+K
+java:S1128")Remove this unused import 'java.net.URL'.(ñìÁ„üÿÿÿÿ8í¦¹‡1
+P
+java:S1128".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ8í¦¹‡1
+R
+java:S1128"5Remove this unused import 'javafx.scene.image.Image'.(‰¿½Ç8í¦¹‡1

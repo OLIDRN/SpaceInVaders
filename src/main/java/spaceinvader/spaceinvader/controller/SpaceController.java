@@ -31,6 +31,7 @@ public class SpaceController implements spaceinvader.spaceinvader.model.Interfac
 
     private Label[][] labels = new Label[10][20];
 
+    private spaceinvader.spaceinvader.model.SpriteStore store;
 
     private spaceinvader.spaceinvader.model.SpaceInvadersGame spaceInvadersGame;
 
@@ -123,6 +124,10 @@ public class SpaceController implements spaceinvader.spaceinvader.model.Interfac
         });
     }
 
+    public void setStore(spaceinvader.spaceinvader.model.SpriteStore store) {
+        this.store = store;
+    }
+
     @FXML
     private void initialize() {
         Stage stage = new Stage();
@@ -135,16 +140,15 @@ public class SpaceController implements spaceinvader.spaceinvader.model.Interfac
                 Label label = new Label();
                 labels[i][j] = label;
                 label.setMinSize(50,50);
-                label.setBackground(createBackground("back"));;
+                label.setBackground(createBackground("back"));
                 gameGrid.add(label, j, i);
             }
         }
     }
 
     private Background createBackground(String name) {
-        URL urlImage = getClass().getResource("/spaceinvader/spaceinvader/base/" + name + ".png");
         BackgroundImage backgroundImage = new BackgroundImage(
-                new Image(urlImage.toExternalForm(), 50, 50, false, true),
+                store.createSprite(name),
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,

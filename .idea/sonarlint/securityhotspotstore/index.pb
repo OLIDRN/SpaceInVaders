@@ -8,7 +8,11 @@ N
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 ?
 settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
-g
-7src/main/java/spaceinvader/spaceinvader/model/Tile.java,d\5\d58f7b358e5fa3c586e20bb49f586931b263b31a
-g
-7src/main/java/spaceinvader/spaceinvader/model/Shot.java,8\5\8548dd47cee86c48fdb6c6c73e96b1e5cead57ef
+l
+<src/main/java/spaceinvader/spaceinvader/model/AlienShip.java,4\e\4e21bd378c908e3516f97156e72c956fb27cffa2
+m
+=src/main/java/spaceinvader/spaceinvader/model/PlayerShip.java,8\0\80ad953bb3c6e33fa2995fe37b7e91fd1790ce81
+m
+=src/main/java/spaceinvader/spaceinvader/SpaceApplication.java,1\1\11b6b388634f61247272bf6a25bf0a17e1d8d76f
+n
+>src/main/java/spaceinvader/spaceinvader/model/SpriteStore.java,1\c\1ceb1506120257e75d0de29109a2786513b1ea33

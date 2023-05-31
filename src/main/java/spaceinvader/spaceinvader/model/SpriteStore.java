@@ -77,6 +77,7 @@ public final class SpriteStore {
     private javafx.scene.image.Image loadImage(String name) {
         try {
             java.net.URL urlImage = getClass().getResource("/spaceinvader/spaceinvader/" + theme + "/" + name + ".png");
+            System.out.println(urlImage);
             return new javafx.scene.image.Image(urlImage.toExternalForm(), 50, 50, true, true);
 
         } catch (NullPointerException | IllegalArgumentException e) {

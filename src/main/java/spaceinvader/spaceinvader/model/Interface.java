@@ -8,4 +8,5 @@ public interface Interface {
     public void endGame(String message);
     public void setScore(javafx.beans.property.IntegerProperty score) ;
     public void setLife(javafx.beans.property.IntegerProperty life);
+    public void setStore(SpriteStore store);
 }

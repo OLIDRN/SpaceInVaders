@@ -74,6 +74,7 @@ public final class SpaceInvadersGame {
 
     private Interface controller;
 
+
     public void setController(Interface controller) {
         this.controller = controller;
     }
@@ -89,7 +90,6 @@ public final class SpaceInvadersGame {
     public SpaceInvadersGame(int height, int width, SpriteStore spriteStore) {
         this.grid = new GameGrid(height, width);
         this.spriteStore = spriteStore;
-        this.spriteStore = new SpriteStore("base");
     }
 
     /**
@@ -97,6 +97,7 @@ public final class SpaceInvadersGame {
      */
     public void prepare() {
         controller.setGameGrid(grid);
+        controller.setStore(spriteStore);
     }
 
     /**
