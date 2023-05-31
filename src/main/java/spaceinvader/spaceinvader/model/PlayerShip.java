@@ -44,7 +44,7 @@ public final class PlayerShip extends spaceinvader.spaceinvader.model.AbstractMo
     @Override
     public void decrementHealth() {
         super.decrementHealth();
-        if (getHealth() == 0) {
+        if (getHealth().get() == 0) {
             game.playerIsDead();
         }
     }

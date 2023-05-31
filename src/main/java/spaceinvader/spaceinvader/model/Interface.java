@@ -6,11 +6,6 @@ public interface Interface {
     public void addMovable(AbstractMovable movable);
     public void removeMovable(AbstractMovable movable);
     public void endGame(String message);
-
-    public static void setScore(int score) {
-
-    }
-    public static void setLife(int life) {
-
-    }
+    public void setScore(javafx.beans.property.IntegerProperty score) ;
+    public void setLife(javafx.beans.property.IntegerProperty life);
 }

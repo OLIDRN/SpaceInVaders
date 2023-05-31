@@ -59,7 +59,7 @@ public final class AlienShip extends spaceinvader.spaceinvader.model.AbstractMov
     @Override
     public void decrementHealth() {
         super.decrementHealth();
-        if (getHealth() == 0) {
+        if (getHealth().get() == 0) {
             game.alienIsDead();
             timeline.stop();
         }

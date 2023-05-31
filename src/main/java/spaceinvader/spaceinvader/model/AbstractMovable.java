@@ -86,6 +86,10 @@ public abstract class AbstractMovable {
         return column;
     }
 
+    public javafx.beans.property.IntegerProperty healthProperty() {
+        return health;
+    }
+
     /**
      * Modifie la position de cet objet mobile.
      *
@@ -111,8 +115,8 @@ public abstract class AbstractMovable {
      *
      * @return Les points de vie restants pour cet objet mobile.
      */
-    public int getHealth() {
-        return health.get();
+    public javafx.beans.property.IntegerProperty getHealth() {
+        return health;
     }
 
     /**

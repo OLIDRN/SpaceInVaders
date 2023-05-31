@@ -53,7 +53,7 @@ public final class Tile {
     public Tile(int row, int column) {
         this.row = row;
         this.column = column;
-        this.movableObject = null;
+        this.movableObject = new javafx.beans.property.SimpleObjectProperty<>(null);
     }
 
     /**

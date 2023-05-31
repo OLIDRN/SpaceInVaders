@@ -18,6 +18,7 @@ package spaceinvader.spaceinvader.model;
 
 import java.util.*;
 import javafx.scene.input.KeyEvent;
+import spaceinvader.spaceinvader.model.*;
 
 /**
  * La classe SpaceInvadersGame permet de gérer une partie du jeu Space-Invaders.
@@ -64,11 +65,10 @@ public final class SpaceInvadersGame {
      * déplacement.
      */
     private int alienDirection = +1;
-
     /**
      * Le score du joueur (en nombre d'aliens éliminés).
      */
-    private int score = 0;
+    private final javafx.beans.property.IntegerProperty score = new javafx.beans.property.SimpleIntegerProperty();
 
     private javafx.stage.Stage stage;
 
@@ -86,9 +86,10 @@ public final class SpaceInvadersGame {
      * @param width La largeur sur laquelle les objets du jeu peuvent se déplacer (en
      *        tuiles).
      */
-    public SpaceInvadersGame(int height, int width) {
-        this.grid = new spaceinvader.spaceinvader.model.GameGrid(height, width);
-        this.spriteStore = new spaceinvader.spaceinvader.model.SpriteStore();
+    public SpaceInvadersGame(int height, int width, SpriteStore spriteStore) {
+        this.grid = new GameGrid(height, width);
+        this.spriteStore = spriteStore;
+        this.spriteStore = new SpriteStore("base");
     }
 
     /**
@@ -98,50 +99,24 @@ public final class SpaceInvadersGame {
         controller.setGameGrid(grid);
     }
 
-    public void setStage(javafx.stage.Stage stage) {
-        this.stage = stage;
-        stage.addEventFilter(KeyEvent.KEY_PRESSED, this::KeyPressed);
-        stage.addEventFilter(KeyEvent.KEY_TYPED, event -> {
-            switch (event.getCode()){
-                case SPACE -> {
-                    fireShot();
-                    break;
-                }
-            }
-        });
-    }
-
-    public void KeyPressed(KeyEvent event) {
-        switch (event.getCode()) {
-            case LEFT:
-                moveLeft();
-                break;
-            case RIGHT:
-                moveRight();
-                break;
-            default:
-                break;
-        }
-    }
-
     /**
      * Démarre cette partie de Space-Invaders, en créant les différents objets présents au
      * début de la partie et pouvant se déplacer.
      */
     public void start() {
         // On crée d'abord le vaisseau du joueur.
-        this.ship = new spaceinvader.spaceinvader.model.PlayerShip(this, spriteStore.createSprite("ship"));
+        this.ship = new PlayerShip(this, spriteStore.createSprite("ship"));
         int row = grid.getHeight() - 3;
         int column = grid.getWidth() / 2;
         ship.setPosition(row, column);
         grid.get(row, column).setMovable(ship);
-        Interface.setScore(score);
-        Interface.setLife(ship.getHealth());
+        controller.setScore(score);
+        controller.setLife(ship.getHealth());
 
         // On ajoute ensuite les aliens.
         nbRemainingAliens = grid.getWidth() / 3;
         for (int i = 0; i < nbRemainingAliens; i++) {
-            spaceinvader.spaceinvader.model.AlienShip alien = new spaceinvader.spaceinvader.model.AlienShip(this, spriteStore.createSprite("alien"));
+            AlienShip alien = new AlienShip(this, spriteStore.createSprite("alien"));
             alien.setPosition(1, 2 * i);
             grid.get(1, 2 * i).setMovable(alien);
             alien.animate();
@@ -298,11 +273,11 @@ public final class SpaceInvadersGame {
      */
     public void alienIsDead() {
         nbRemainingAliens--;
-        score++;
+        score.set(score.get() + 1);
 
         if (nbRemainingAliens == 0) {
             // Tous les aliens ont été tués : le niveau en cours est terminé.
-            gameOver("YOU WIN!");
+            gameOver("TU AS GAGNE!");
         }
     }
 
@@ -310,14 +285,14 @@ public final class SpaceInvadersGame {
      * Termine la partie lorsque le joueur est tué.
      */
     public void playerIsDead() {
-        gameOver("YOU HAVE BEEN KILLED!");
+        gameOver("TU ES MORT!");
     }
 
     /**
      * Termine la partie lorsque les aliens atteignent la planète.
      */
     public void alienReachedPlanet() {
-        gameOver("ALIENS INVADED THE PLANET!");
+        gameOver("LES ALIENS ONT ATTEINT LA PLANETE!");
     }
 
     /**

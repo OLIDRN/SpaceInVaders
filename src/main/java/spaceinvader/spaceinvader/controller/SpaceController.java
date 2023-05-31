@@ -24,6 +24,9 @@ public class SpaceController implements spaceinvader.spaceinvader.model.Interfac
     @FXML
     private GridPane gameGrid;
 
+    @FXML
+    private Label labelle;
+
     private Stage stage;
 
     private Label[][] labels = new Label[10][20];
@@ -70,26 +73,60 @@ public class SpaceController implements spaceinvader.spaceinvader.model.Interfac
 
     @Override
     public void addMovable(spaceinvader.spaceinvader.model.AbstractMovable movable) {
-        
+        if (movable != null) {
+            javafx.scene.Node graphic = createGraphicFor(movable);
+            labels[movable.getRow()][movable.getColumn()].setGraphic(graphic);
+        }
     }
 
     @Override
     public void removeMovable(spaceinvader.spaceinvader.model.AbstractMovable movable) {
-
+        if (movable != null) {
+            labels[movable.getRow()][movable.getColumn()].setGraphic(null);
+        }
     }
 
     @Override
     public void endGame(String message) {
+        labelle.setVisible(true);
+        labelle.setText(message);
+    }
 
+    @Override
+    public void setScore(javafx.beans.property.IntegerProperty score) {
+        this.score.textProperty().bind(score.asString());
+    }
+
+    @Override
+    public void setLife(javafx.beans.property.IntegerProperty life) {
+        this.life.textProperty().bind(life.asString());
     }
 
     public void setStage(Stage stage) {
         this.stage = stage;
+        stage.addEventFilter(javafx.scene.input.KeyEvent.KEY_PRESSED, event -> {
+            switch (event.getCode()){
+                case LEFT -> {
+                    spaceInvadersGame.moveLeft();
+                }
+                case RIGHT -> {
+                    spaceInvadersGame.moveRight();
+                }
+            }
+        });
+        stage.addEventFilter(javafx.scene.input.KeyEvent.KEY_TYPED, event -> {
+            switch (event.getCharacter()){
+                case " " -> {
+                    spaceInvadersGame.fireShot();
+                }
+            }
+        });
     }
 
     @FXML
     private void initialize() {
         Stage stage = new Stage();
+        labelle.setVisible(false);
         score.setText("Score : 0");
         life.setText("Vie : 3");
 
@@ -105,7 +142,7 @@ public class SpaceController implements spaceinvader.spaceinvader.model.Interfac
     }
 
     private Background createBackground(String name) {
-        URL urlImage = getClass().getResource("/spaceinvader/spaceinvader/img/" + name + ".png");
+        URL urlImage = getClass().getResource("/spaceinvader/spaceinvader/base/" + name + ".png");
         BackgroundImage backgroundImage = new BackgroundImage(
                 new Image(urlImage.toExternalForm(), 50, 50, false, true),
                 BackgroundRepeat.NO_REPEAT,

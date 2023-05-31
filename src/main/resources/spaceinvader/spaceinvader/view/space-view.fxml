@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="spaceinvader.spaceinvader.controller.SpaceController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="940.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="spaceinvader.spaceinvader.controller.SpaceController">
    <children>
       <GridPane fx:id="gameGrid" prefHeight="160.0" prefWidth="930.0">
         <columnConstraints>
@@ -53,6 +53,10 @@
                   <Font name="ROGFonts-Regular" size="24.0" />
                </font>
             </Label>
+            <Label fx:id="labelle" layoutX="161.0" layoutY="4.0" prefHeight="75.0" prefWidth="763.0" text=" Label" textAlignment="CENTER" textFill="#7f00f7">
+               <font>
+                  <Font name="ROGFonts-Regular" size="53.0" />
+               </font></Label>
          </children>
       </Pane>
    </children>

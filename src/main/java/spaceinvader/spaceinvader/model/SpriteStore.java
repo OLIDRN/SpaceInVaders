@@ -33,6 +33,8 @@ import javafx.scene.image.Image;
  */
 public final class SpriteStore {
 
+    private String theme;
+
     /**
      * La {@link Map} permettant de conserver en cache les différents sprites déjà
      * chargés.
@@ -46,6 +48,10 @@ public final class SpriteStore {
      *
      * @return L'image chargée.
      */
+
+    public SpriteStore(String theme) {
+        this.theme = theme;
+    }
     public javafx.scene.image.Image createSprite(String identifier) {
         // On commence par regarder si l'image a déjà été chargée.
         javafx.scene.image.Image cached = spriteCache.get(identifier);
@@ -70,7 +76,7 @@ public final class SpriteStore {
      */
     private javafx.scene.image.Image loadImage(String name) {
         try {
-            java.net.URL urlImage = getClass().getResource("./view/images/" + name + ".png");
+            java.net.URL urlImage = getClass().getResource("/spaceinvader/spaceinvader/" + theme + "/" + name + ".png");
             return new javafx.scene.image.Image(urlImage.toExternalForm(), 50, 50, true, true);
 
         } catch (NullPointerException | IllegalArgumentException e) {
