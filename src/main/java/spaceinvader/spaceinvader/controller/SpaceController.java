@@ -10,6 +10,8 @@ import spaceinvader.spaceinvader.model.AbstractMovable;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.geometry.Pos;
+import spaceinvader.spaceinvader.model.*;
+import javafx.beans.property.IntegerProperty;
 
 import java.net.URL;
 
@@ -31,25 +33,31 @@ public class SpaceController implements spaceinvader.spaceinvader.model.Interfac
 
     private Label[][] labels = new Label[10][20];
 
-    private spaceinvader.spaceinvader.model.SpriteStore store;
+    private SpaceInvadersGame spaceInvadersGame;
 
-    private spaceinvader.spaceinvader.model.SpaceInvadersGame spaceInvadersGame;
+    private SpriteStore store;
 
-    public void setSpaceInvaders(spaceinvader.spaceinvader.model.SpaceInvadersGame spaceInvader) {
+    public void setSpaceInvaders(SpaceInvadersGame spaceInvader) {
         this.spaceInvadersGame = spaceInvader;
     }
 
     @Override
-    public void setGameGrid(spaceinvader.spaceinvader.model.GameGrid gameGrid) {
+    public void setGameGrid(GameGrid gameGrid) {
+        labelle.setVisible(false);
         for (int  i = 0; i < 10; i++) {
             for (int j = 0; j < 20; j++) {
+                labels[i][j] = new Label();
+                Label label = labels[i][j];
+                label.setMinSize(50, 50);
+                label.setBackground(createBackground("back"));
+                this.gameGrid.add(label, j, i);
                 extracted(gameGrid, i, j);
             }
         }
 
     }
 
-    private void extracted(spaceinvader.spaceinvader.model.GameGrid gameGrid, int i, int j) {
+    private void extracted(GameGrid gameGrid, int i, int j) {
         gameGrid.get(i, j).getMovableProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 javafx.scene.Node graphic = createGraphicFor(newValue);
@@ -73,7 +81,7 @@ public class SpaceController implements spaceinvader.spaceinvader.model.Interfac
 
 
     @Override
-    public void addMovable(spaceinvader.spaceinvader.model.AbstractMovable movable) {
+    public void addMovable(AbstractMovable movable) {
         if (movable != null) {
             javafx.scene.Node graphic = createGraphicFor(movable);
             labels[movable.getRow()][movable.getColumn()].setGraphic(graphic);
@@ -81,7 +89,7 @@ public class SpaceController implements spaceinvader.spaceinvader.model.Interfac
     }
 
     @Override
-    public void removeMovable(spaceinvader.spaceinvader.model.AbstractMovable movable) {
+    public void removeMovable(AbstractMovable movable) {
         if (movable != null) {
             labels[movable.getRow()][movable.getColumn()].setGraphic(null);
         }
@@ -94,12 +102,12 @@ public class SpaceController implements spaceinvader.spaceinvader.model.Interfac
     }
 
     @Override
-    public void setScore(javafx.beans.property.IntegerProperty score) {
+    public void setScore(IntegerProperty score) {
         this.score.textProperty().bind(score.asString());
     }
 
     @Override
-    public void setLife(javafx.beans.property.IntegerProperty life) {
+    public void setLife(IntegerProperty life) {
         this.life.textProperty().bind(life.asString());
     }
 
@@ -124,36 +132,18 @@ public class SpaceController implements spaceinvader.spaceinvader.model.Interfac
         });
     }
 
-    public void setStore(spaceinvader.spaceinvader.model.SpriteStore store) {
+    public void setStore(SpriteStore store) {
         this.store = store;
     }
 
-    @FXML
-    private void initialize() {
-        Stage stage = new Stage();
-        labelle.setVisible(false);
-        score.setText("Score : 0");
-        life.setText("Vie : 3");
-
-        for (int  i = 0; i < 10; i++) {
-            for (int j = 0; j < 20; j++) {
-                Label label = new Label();
-                labels[i][j] = label;
-                label.setMinSize(50,50);
-                label.setBackground(createBackground("back"));
-                gameGrid.add(label, j, i);
-            }
-        }
-    }
 
     private Background createBackground(String name) {
         BackgroundImage backgroundImage = new BackgroundImage(
-                store.createSprite(name),
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
+                    store.createSprite(name),
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.DEFAULT,
+                    BackgroundSize.DEFAULT);
         return new Background(backgroundImage);
     }
-
 }

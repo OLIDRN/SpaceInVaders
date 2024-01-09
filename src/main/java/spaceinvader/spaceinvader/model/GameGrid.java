@@ -53,5 +53,4 @@ public final class GameGrid {
     public spaceinvader.spaceinvader.model.Tile get(int row, int column) {
         return tiles[row][column];
     }
-
 }

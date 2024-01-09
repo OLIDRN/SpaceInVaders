@@ -96,8 +96,8 @@ public final class SpaceInvadersGame {
      * Prépare une partie de Space-Invaders sur le contrôleur de l'application.
      */
     public void prepare() {
-        controller.setGameGrid(grid);
         controller.setStore(spriteStore);
+        controller.setGameGrid(grid);
     }
 
     /**
